@@ -1,6 +1,6 @@
 {
-  "name": "super-app5000",
-  "version": "0.0.0",
+  "name": "superapp5000",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
