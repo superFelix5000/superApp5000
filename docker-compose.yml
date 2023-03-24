@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  superApp5000:
+    image: superapp5000
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
