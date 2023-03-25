@@ -3,5 +3,5 @@ export interface Photo {
     id: number;
     title: string;
     url: string;
-    thumbnailurl: string;
+    thumbnailUrl: string;
 }

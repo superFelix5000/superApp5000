@@ -23,7 +23,7 @@ export class PhotosService {
         return this.http
             .get<Photo[]>(this.apiUrlPhotos, {
                 observe: 'response',
-                params: { _limit: limit, page: pageNr },
+                params: { _limit: limit, _page: pageNr },
             })
             .pipe(
                 map(

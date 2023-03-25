@@ -1,2 +1,2 @@
 <button (click)="goBack()">back</button>
-<img src="assets/sample.png">
+<img src="{{(photo$ | async)?.url}}">

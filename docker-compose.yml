@@ -1,7 +1,7 @@
 version: "3.7"
 services:
-  superApp5000:
-    image: superapp5000
+  photoBrowser:
+    image: photobrowser
     build:
       dockerfile: Dockerfile
     ports:

@@ -7,6 +7,7 @@ import { PhotobrowserComponent } from './components/photobrowser/photobrowser.co
 import { AlbumsComponent } from './components/albums/albums.component';
 import { PhotodetailsComponent } from './components/photodetails/photodetails.component';
 import { PhotogridComponent } from './components/photogrid/photogrid.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PhotogridComponent } from './components/photogrid/photogrid.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
