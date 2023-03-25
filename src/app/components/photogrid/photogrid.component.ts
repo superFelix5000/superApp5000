@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './photogrid.component.html',
   styleUrls: ['./photogrid.component.scss']
 })
-export class PhotogridComponent {
-
-}
+export class PhotogridComponent {}

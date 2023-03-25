@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NavigationService } from './navigation.service';
+import { PhotosService } from './photos.service';
 
-describe('NavigationService', () => {
-    let service: NavigationService;
+describe('PhotosService', () => {
+    let service: PhotosService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(NavigationService);
+        service = TestBed.inject(PhotosService);
     });
 
     it('should be created', () => {
