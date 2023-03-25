@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-photodetails',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./photodetails.component.scss']
 })
 export class PhotodetailsComponent {
-    goBack(): void {}
+    constructor(private navigationService: NavigationService) {}
+
+    goBack(): void {
+        this.navigationService.goBack();
+    }
 }
