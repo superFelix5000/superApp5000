@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { Photo } from 'src/app/models/photo';
+import { map, Observable, of, tap } from 'rxjs';
+import { PhotosResult } from 'src/app/models/photosResult';
 import { PhotosService } from 'src/app/services/photos.service';
 
 @Component({
@@ -10,16 +10,40 @@ import { PhotosService } from 'src/app/services/photos.service';
 })
 export class PhotogridComponent implements OnInit {
     private readonly pageLimit = 25;
-    private currentPage = 1;
-    private maxPages = 1; // TODO: build component
-
-    protected photos$: Observable<Photo[]> = of([]);
+    protected currentPage = 1;
+    protected photosResult$: Observable<PhotosResult> | undefined;
+    protected maxPages$: Observable<number> | undefined;
+    protected showButtons$: Observable<boolean> | undefined;
 
     constructor(private photosService: PhotosService) {}
 
     ngOnInit(): void {
-        this.photos$ = this.photosService
-            .getPage(1, this.pageLimit)
-            .pipe(map((res) => res.photos));
+        this.getCurrentPage();
+        this.maxPages$ = this.photosResult$?.pipe(
+            tap((res) => console.log(res.maxNumPhotos)),
+            map((res) => Math.max(res.maxNumPhotos / this.pageLimit)),
+            tap((res) => console.log(res))
+        );
+        this.showButtons$ = this.maxPages$?.pipe(
+            map((maxPageNumber) => maxPageNumber > 1)
+        );
+    }
+
+    getCurrentPage() {
+        console.log(this.currentPage);
+        this.photosResult$ = this.photosService.getPage(
+            this.currentPage,
+            this.pageLimit
+        );
+    }
+
+    goToNextPage() {
+        this.currentPage++;
+        this.getCurrentPage();
+    }
+
+    goToPrevPage() {
+        this.currentPage--;
+        this.getCurrentPage();
     }
 }
