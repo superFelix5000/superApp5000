@@ -3,14 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PhotobrowserComponent } from './photobrowser/photobrowser.component';
-import { AlbumsComponent } from './albums/albums.component';
+import { PhotobrowserComponent } from './components/photobrowser/photobrowser.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { PhotodetailsComponent } from './components/photodetails/photodetails.component';
+import { PhotogridComponent } from './components/photogrid/photogrid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PhotobrowserComponent,
-    AlbumsComponent
+    AlbumsComponent,
+    PhotodetailsComponent,
+    PhotogridComponent
   ],
   imports: [
     BrowserModule,
