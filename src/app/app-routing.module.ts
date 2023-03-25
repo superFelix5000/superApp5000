@@ -6,9 +6,21 @@ import { PhotogridComponent } from './components/photogrid/photogrid.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/photobrowser', pathMatch: 'full' },
-    { path: 'photobrowser', component: PhotogridComponent },
+    {
+        path: 'photobrowser',
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                component: PhotogridComponent,
+            },
+            {
+                path: 'photodetails/:id',
+                component: PhotodetailsComponent,
+            },
+        ],
+    },
     { path: 'albums', component: AlbumsComponent },
-    { path: 'photodetails', component: PhotodetailsComponent },
     { path: '**', redirectTo: '/photobrowser' },
 ];
 
