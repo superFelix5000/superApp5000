@@ -8,13 +8,13 @@
 <div class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">
     <div class="shadow-lg shadow-indigo-200 flex flex-row">
         <button class="bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin" (click)="goToPrevPage()">
-            Prev
-          </button>
-          <div class="bg-gray-200 font-mono text-lg font-thin px-5 flex flex-col justify-center">
-              {{currentPage}} / {{maxPages$ | async}}
-          </div>
-          <button class="bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin" (click)="goToNextPage()">
-            Next
-          </button>
+            <img class="w-full rotate-180" src="assets/arrow.svg">
+        </button>
+        <div class="bg-gray-200 font-mono text-lg font-thin px-5 flex flex-col justify-center">
+            {{currentPage}} / {{maxPages$ | async}}
+        </div>
+        <button class="bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin" (click)="goToNextPage()">
+            <img class="w-full" src="assets/arrow.svg">
+        </button>
     </div>
 </div>
