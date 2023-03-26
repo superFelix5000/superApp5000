@@ -9,6 +9,8 @@ import { PhotodetailsComponent } from './components/photodetails/photodetails.co
 import { PhotogridComponent } from './components/photogrid/photogrid.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PagingComponent } from './components/paging/paging.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { PhotoBrowserRouteReuseStrategy } from './custom-route-reuse-strategy';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,12 @@ import { PagingComponent } from './components/paging/paging.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+        provide: RouteReuseStrategy,
+        useClass: PhotoBrowserRouteReuseStrategy,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
