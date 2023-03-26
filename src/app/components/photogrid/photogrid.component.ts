@@ -5,8 +5,7 @@ import { PhotosService } from 'src/app/services/photos.service';
 
 @Component({
   selector: 'app-photogrid',
-  templateUrl: './photogrid.component.html',
-  styleUrls: ['./photogrid.component.scss']
+  templateUrl: './photogrid.component.html'
 })
 export class PhotogridComponent implements OnInit {
     private readonly pageLimit = 25;

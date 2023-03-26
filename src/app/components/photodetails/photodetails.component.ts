@@ -7,8 +7,7 @@ import { PhotosService } from 'src/app/services/photos.service';
 
 @Component({
   selector: 'app-photodetails',
-  templateUrl: './photodetails.component.html',
-  styleUrls: ['./photodetails.component.scss']
+  templateUrl: './photodetails.component.html'
 })
 export class PhotodetailsComponent implements OnInit {
     // TODO: use Signal for number?
