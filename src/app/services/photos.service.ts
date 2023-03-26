@@ -38,6 +38,17 @@ export class PhotosService {
             );
     }
 
+    public getMaxNumPhotos(): Observable<number> {
+        return this.http
+            .get<Photo[]>(this.apiUrlPhotos, {
+                observe: 'response',
+                params: { _limit: 1, _page: 1 },
+            })
+            .pipe(
+                map((res) => parseInt(res.headers.get('X-Total-Count') ?? ''))
+            );
+    }
+
     public getPhoto(id: number): Observable<Photo> {
         return this.http
             .get<Photo>(`${this.apiUrlPhotos}/${id}`)

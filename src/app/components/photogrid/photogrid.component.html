@@ -6,17 +6,8 @@
     </ng-container>
 </div>
 <div class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">
-    <div class="shadow-lg shadow-indigo-200 flex flex-row">
-        <button class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin disabled:hover:bg-gray-200" 
-            (click)="goToPrevPage()" [disabled]="currentPage === 1">
-            <img class="w-full rotate-180 group-disabled:opacity-20" src="assets/arrow.svg">
-        </button>
-        <div class="bg-gray-200 font-mono text-lg font-thin px-5 flex flex-col justify-center">
-            {{currentPage}} / {{maxPages$ | async}}
-        </div>
-        <button class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin disabled:hover:bg-gray-200" 
-            (click)="goToNextPage()" [disabled]="currentPage === (maxPages$ | async)">
-            <img class="w-full group-disabled:opacity-20" src="assets/arrow.svg">
-        </button>
-    </div>
+    <app-paging [currentPage]="currentPage" 
+        [maxNumPages]="(maxPages$ | async) ?? 1"
+        (onNextClicked)="goToNextPage()"
+        (onPreviousClicked)="goToPrevPage()"></app-paging>
 </div>

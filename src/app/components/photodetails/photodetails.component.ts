@@ -11,7 +11,10 @@ import { PhotosService } from 'src/app/services/photos.service';
   styleUrls: ['./photodetails.component.scss']
 })
 export class PhotodetailsComponent implements OnInit {
+    // TODO: use Signal for number?
+    protected currentId: number = 1;
     protected photo$: Observable<Photo> | undefined;
+    protected maxNumPhotos$: Observable<number> | undefined;
 
     constructor(
         private navigationService: NavigationService,
@@ -20,16 +23,31 @@ export class PhotodetailsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.maxNumPhotos$ = this.photosService.getMaxNumPhotos();
         // TODO: error handling for wrong parameter
         this.photo$ = this.route.paramMap.pipe(
             switchMap((params) => {
-                const selectedId = Number(params.get('id'));
-                return this.photosService.getPhoto(selectedId);
+                this.currentId = Number(params.get('id'));
+                return this.photosService.getPhoto(this.currentId);
             })
         );
     }
 
+    private fetchPhoto() {
+        this.photo$ = this.photosService.getPhoto(this.currentId);
+    }
+
     goBack(): void {
         this.navigationService.goBack();
+    }
+
+    goToNextPhoto(): void {
+        this.currentId++;
+        this.fetchPhoto();
+    }
+
+    goToPreviousPhoto(): void {
+        this.currentId--;
+        this.fetchPhoto();
     }
 }
