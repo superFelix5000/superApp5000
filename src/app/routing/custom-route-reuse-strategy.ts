@@ -3,7 +3,7 @@ import {
     DetachedRouteHandle,
     RouteReuseStrategy,
 } from '@angular/router';
-import { PhotogridComponent } from './components/photogrid/photogrid.component';
+import { PhotogridComponent } from '../components/photogrid/photogrid.component';
 
 export class PhotoBrowserRouteReuseStrategy implements RouteReuseStrategy {
     private routeStore = new Map<string, DetachedRouteHandle>();
