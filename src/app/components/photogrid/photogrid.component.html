@@ -1,11 +1,20 @@
 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4">
     <ng-container *ngFor="let photo of (photosResult$ | async)?.photos">
         <a routerLink="photodetails/{{photo.id}}">
-            <img class="hover:opacity-75 duration-300 ease-in-out h-auto w-full rounded-lg shadow-lg" loading="lazy" src="{{photo.thumbnailUrl}}" alt="">
+            <img class="hover:brightness-125 duration-300 ease-in-out h-auto w-full rounded-lg shadow-lg" loading="lazy" src="{{photo.thumbnailUrl}}" alt="">
         </a>
     </ng-container>
 </div>
-<div *ngIf="showButtons$ | async" >
-    <button *ngIf="currentPage > 1" (click)="goToPrevPage()">previous</button>
-    <button (click)="goToNextPage()">next</button>
+<div class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">
+    <div class="shadow-lg shadow-indigo-200 flex flex-row">
+        <button class="bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin" (click)="goToPrevPage()">
+            Prev
+          </button>
+          <div class="bg-gray-200 font-mono text-lg font-thin px-5 flex flex-col justify-center">
+              {{currentPage}} / {{maxPages$ | async}}
+          </div>
+          <button class="bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin" (click)="goToNextPage()">
+            Next
+          </button>
+    </div>
 </div>
