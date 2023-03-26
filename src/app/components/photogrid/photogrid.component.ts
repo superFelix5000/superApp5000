@@ -20,9 +20,7 @@ export class PhotogridComponent implements OnInit {
     ngOnInit(): void {
         this.getCurrentPage();
         this.maxPages$ = this.photosResult$?.pipe(
-            tap((res) => console.log(res.maxNumPhotos)),
-            map((res) => Math.max(res.maxNumPhotos / this.pageLimit)),
-            tap((res) => console.log(res))
+            map((res) => Math.max(res.maxNumPhotos / this.pageLimit))
         );
         this.showButtons$ = this.maxPages$?.pipe(
             map((maxPageNumber) => maxPageNumber > 1)
@@ -30,7 +28,6 @@ export class PhotogridComponent implements OnInit {
     }
 
     getCurrentPage() {
-        console.log(this.currentPage);
         this.photosResult$ = this.photosService.getPage(
             this.currentPage,
             this.pageLimit
