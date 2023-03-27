@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Photo } from 'src/app/models/photo';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PhotosService } from 'src/app/services/photos.service';

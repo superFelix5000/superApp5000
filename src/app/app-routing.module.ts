@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumsComponent } from '../components/albums/albums.component';
-import { PhotodetailsComponent } from '../components/photodetails/photodetails.component';
-import { PhotogridComponent } from '../components/photogrid/photogrid.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { PhotogridComponent } from './components/photogrid/photogrid.component';
+import { PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
     { path: '', redirectTo: '/browser', pathMatch: 'full' },
@@ -19,7 +19,10 @@ const routes: Routes = [
             },
             {
                 path: 'photodetails/:id',
-                component: PhotodetailsComponent,
+                loadChildren: () =>
+                    import('./modules/details/details.module').then(
+                        (m) => m.DetailsModule
+                    ),
             },
         ],
     },
@@ -28,7 +31,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

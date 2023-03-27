@@ -1,37 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './routing/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PhotobrowserComponent } from './components/photobrowser/photobrowser.component';
 import { AlbumsComponent } from './components/albums/albums.component';
-import { PhotodetailsComponent } from './components/photodetails/photodetails.component';
 import { PhotogridComponent } from './components/photogrid/photogrid.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PagingComponent } from './components/paging/paging.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { PhotoBrowserRouteReuseStrategy } from './routing/photo-browser-route-reuse-strategy';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PhotobrowserComponent,
-    AlbumsComponent,
-    PhotodetailsComponent,
-    PhotogridComponent,
-    PagingComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
-  providers: [
+    declarations: [
+        AppComponent,
+        PhotobrowserComponent,
+        AlbumsComponent,
+        PhotogridComponent,
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        SharedModule
+    ],
+    providers: [
     {
         provide: RouteReuseStrategy,
         useClass: PhotoBrowserRouteReuseStrategy,
     },
-  ],
-  bootstrap: [AppComponent]
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
