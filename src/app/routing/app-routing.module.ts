@@ -5,14 +5,17 @@ import { PhotodetailsComponent } from '../components/photodetails/photodetails.c
 import { PhotogridComponent } from '../components/photogrid/photogrid.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/photobrowser', pathMatch: 'full' },
+    { path: '', redirectTo: '/browser', pathMatch: 'full' },
     {
-        path: 'photobrowser',
+        path: 'browser',
         children: [
             {
                 path: '',
                 pathMatch: 'full',
                 component: PhotogridComponent,
+                data: {
+                    reuse: true,
+                },
             },
             {
                 path: 'photodetails/:id',
@@ -21,7 +24,7 @@ const routes: Routes = [
         ],
     },
     { path: 'albums', component: AlbumsComponent },
-    { path: '**', redirectTo: '/photobrowser' },
+    { path: '**', redirectTo: '/browser' },
 ];
 
 @NgModule({

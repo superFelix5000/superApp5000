@@ -1,31 +1,35 @@
+import { Injectable } from '@angular/core';
 import {
     ActivatedRouteSnapshot,
+    Data,
     DetachedRouteHandle,
     RouteReuseStrategy,
 } from '@angular/router';
-import { PhotogridComponent } from '../components/photogrid/photogrid.component';
 
+@Injectable({
+    providedIn: 'root'
+  })
 export class PhotoBrowserRouteReuseStrategy implements RouteReuseStrategy {
     private routeStore = new Map<string, DetachedRouteHandle>();
-    private reuseComponentName = 'PhotogridComponent';
+    private readonly reuseComponent = 'reuseComponent';
 
     shouldDetach(route: ActivatedRouteSnapshot): boolean {
-        const shouldDetach = route.component!.name === this.reuseComponentName;
-        return shouldDetach;
+        return this.isReuseRoute(route.data);
     }
 
     store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
-        this.routeStore.set(route.component!.name!, handle);
+        this.routeStore.set(this.reuseComponent, handle);
     }
 
     shouldAttach(route: ActivatedRouteSnapshot): boolean {
-        const shouldAttach = route.component?.name === this.reuseComponentName;
-        return shouldAttach && !!this.routeStore.get(route.component!.name);
+        return (
+            this.isReuseRoute(route.data) &&
+            !!this.routeStore.get(this.reuseComponent)
+        );
     }
 
     retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
-        const name = route.component!.name;
-        return this.routeStore.get(name)!;
+        return this.routeStore.get(this.reuseComponent)!;
     }
 
     shouldReuseRoute(
@@ -33,5 +37,9 @@ export class PhotoBrowserRouteReuseStrategy implements RouteReuseStrategy {
         curr: ActivatedRouteSnapshot
     ): boolean {
         return future.routeConfig === curr.routeConfig;
+    }
+
+    private isReuseRoute(data: Data) {
+        return data ? data['reuse'] : false;
     }
 }

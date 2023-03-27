@@ -10,7 +10,7 @@ import { PhotogridComponent } from './components/photogrid/photogrid.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PagingComponent } from './components/paging/paging.component';
 import { RouteReuseStrategy } from '@angular/router';
-import { PhotoBrowserRouteReuseStrategy } from './routing/custom-route-reuse-strategy';
+import { PhotoBrowserRouteReuseStrategy } from './routing/photo-browser-route-reuse-strategy';
 
 @NgModule({
   declarations: [
