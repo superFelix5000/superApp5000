@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
+import { Photo } from 'src/app/models/photo';
 import { PhotosResult } from 'src/app/models/photosResult';
 import { PhotosService } from 'src/app/services/photos.service';
 
@@ -24,6 +25,10 @@ export class PhotogridComponent implements OnInit {
         this.showButtons$ = this.maxPages$?.pipe(
             map((maxPageNumber) => maxPageNumber > 1)
         );
+    }
+
+    getPhotoId(index: number, item: Photo) {
+        return item.id;
     }
 
     getCurrentPage() {

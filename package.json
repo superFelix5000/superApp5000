@@ -7,8 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "npx rome check . --apply",
-    "format": "npx rome format --write ."
+    "lint": "npx rome check .",
+    "lint-write": "npx rome check . --apply",
+    "format": "npx rome format .",
+    "format-write": "npx rome format --write ."
   },
   "private": true,
   "dependencies": {

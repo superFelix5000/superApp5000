@@ -1,8 +1,6 @@
 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4 mb-24">
-    <ng-container *ngFor="let photo of (photosResult$ | async)?.photos">
-        <a routerLink="photodetails/{{photo.id}}">
-            <img class="hover:brightness-125 duration-300 ease-in-out h-auto w-full rounded-lg shadow-lg" loading="lazy" src="{{photo.thumbnailUrl}}" alt="">
-        </a>
+    <ng-container *ngFor="let photo of (photosResult$ | async)?.photos; trackBy: getPhotoId">
+        <app-thumbnail [photo]="photo"/>
     </ng-container>
 </div>
 <div class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">

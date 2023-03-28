@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 import { PhotoBrowserRouteReuseStrategy } from './routing/photo-browser-route-reuse-strategy';
 import { SharedModule } from './modules/shared/shared.module';
+import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { SharedModule } from './modules/shared/shared.module';
         PhotobrowserComponent,
         AlbumsComponent,
         PhotogridComponent,
+        ThumbnailComponent,
     ],
     imports: [
         BrowserModule,
