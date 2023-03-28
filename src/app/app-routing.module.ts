@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlbumsComponent } from './components/albums/albums.component';
-import { PhotogridComponent } from './components/photogrid/photogrid.component';
 import { PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
@@ -12,10 +11,10 @@ const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                component: PhotogridComponent,
-                data: {
-                    reuse: true,
-                },
+                loadChildren: () =>
+                    import('./modules/photogrid/photogrid.module').then(
+                        (m) => m.PhotogridModule
+                    ),
             },
             {
                 path: 'photodetails/:id',
