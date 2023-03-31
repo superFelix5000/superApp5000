@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Photo } from 'src/app/models/photo';
 import { PhotosResult } from 'src/app/models/photosResult';
 import { PhotosService } from 'src/app/services/photos.service';

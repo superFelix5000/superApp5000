@@ -1,22 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+    createComponentFactory,
+    createSpyObject,
+    Spectator,
+} from '@ngneat/spectator';
+import { MockProvider } from 'ng-mocks';
+import { of } from 'rxjs';
+import { PhotosResult } from 'src/app/models/photosResult';
+import { PhotosService } from 'src/app/services/photos.service';
 
 import { PhotogridComponent } from './photogrid.component';
 
 describe('PhotogridComponent', () => {
-    let component: PhotogridComponent;
-    let fixture: ComponentFixture<PhotogridComponent>;
+    let spectator: Spectator<PhotogridComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [PhotogridComponent],
-        }).compileComponents();
-
-        fixture = TestBed.createComponent(PhotogridComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    const createComponent = createComponentFactory({
+        component: PhotogridComponent,
+        providers: [MockProvider(PhotosService)],
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    beforeEach(() => (spectator = createComponent()));
+
+    it('component should be created', () => {
+        expect(spectator.component).toBeTruthy();
     });
 });

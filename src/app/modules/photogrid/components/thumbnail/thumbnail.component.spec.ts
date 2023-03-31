@@ -1,22 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 
 import { ThumbnailComponent } from './thumbnail.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ThumbnailComponent', () => {
-    let component: ThumbnailComponent;
-    let fixture: ComponentFixture<ThumbnailComponent>;
-
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [ThumbnailComponent],
-        }).compileComponents();
-
-        fixture = TestBed.createComponent(ThumbnailComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    let spectator: Spectator<ThumbnailComponent>;
+    const createComponent = createComponentFactory({
+        component: ThumbnailComponent,
+        imports: [RouterTestingModule],
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    beforeEach(() => (spectator = createComponent()));
+
+    it('component should be created', () => {
+        expect(spectator.component).toBeTruthy();
     });
 });
