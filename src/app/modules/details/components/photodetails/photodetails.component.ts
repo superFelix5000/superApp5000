@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Photo } from 'src/app/models/photo';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PhotosService } from 'src/app/services/photos.service';
@@ -12,8 +12,9 @@ import { PhotosService } from 'src/app/services/photos.service';
 export class PhotodetailsComponent implements OnInit {
     // TODO: use Signal for number?
     protected currentId: number = 1;
-    protected photo$: Observable<Photo> | undefined;
+    protected photo: Photo | undefined;
     protected maxNumPhotos$: Observable<number> | undefined;
+    protected loadingImage = false;
 
     constructor(
         private navigationService: NavigationService,
@@ -24,16 +25,17 @@ export class PhotodetailsComponent implements OnInit {
     ngOnInit(): void {
         this.maxNumPhotos$ = this.photosService.getMaxNumPhotos();
         // TODO: error handling for wrong parameter
-        this.photo$ = this.route.paramMap.pipe(
-            switchMap((params) => {
-                this.currentId = Number(params.get('id'));
-                return this.photosService.getPhoto(this.currentId);
-            })
-        );
+        this.route.paramMap.subscribe((params) => {
+            this.currentId = Number(params.get('id'));
+            this.fetchPhoto(this.currentId);
+        });
     }
 
-    private fetchPhoto() {
-        this.photo$ = this.photosService.getPhoto(this.currentId);
+    private fetchPhoto(id: number): void {
+        this.loadingImage = true;
+        this.photosService
+            .getPhoto(id)
+            .subscribe((photo) => (this.photo = photo));
     }
 
     goBack(): void {
@@ -41,12 +43,14 @@ export class PhotodetailsComponent implements OnInit {
     }
 
     goToNextPhoto(): void {
-        this.currentId++;
-        this.fetchPhoto();
+        this.fetchPhoto(this.currentId++);
     }
 
     goToPreviousPhoto(): void {
-        this.currentId--;
-        this.fetchPhoto();
+        this.fetchPhoto(this.currentId--);
+    }
+
+    loaded(): void {
+        this.loadingImage = false;
     }
 }

@@ -6,5 +6,5 @@ import { Photo } from 'src/app/models/photo';
   templateUrl: './thumbnail.component.html'
 })
 export class ThumbnailComponent {
-    @Input() photo: Photo;
+    @Input() photo: Photo | undefined;
 }

@@ -16,5 +16,9 @@ module.exports = {
   moduleDirectories: [
     "node_modules",
     "src"
-  ]
+  ],
+  modulePaths:[
+    "<rootDir>"
+  ],
+  slowTestThreshold: 30
 };
