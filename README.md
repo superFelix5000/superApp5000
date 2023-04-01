@@ -1,27 +1,35 @@
-# SuperApp5000
+# SuperApp5000 / Photobrowser
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
+This is a photo browsing app which queries different REST endpoints from [{JSON} Placeholder](http://jsonplaceholder.typicode.com/) and displays the photos behind those.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng serve` or `npm run start` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` or `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Docker
+Build and deploy local docker container running the application using `docker compose up`. Navigate to `http://localhost:4200/`.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via [Jest](https://jestjs.io/).
 
-## Running end-to-end tests
+## Formatter / Linter
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `npm run format` and `npm run lint` for inspection of needed improvements. Or `npm run format:write` and `npm run lint:write` for applying fixes immediately.
 
-## Further help
+## Used tools/frameworks
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Angular
+- Tailwind CSS
+- Ngx Toastr
+- Rome
+- Jest
+- Docker
+
+## Live version
+
+Take a look at a live version on GitHub Pages [here](https://superfelix5000.github.io/photobrowser/browser).
