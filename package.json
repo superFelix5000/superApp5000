@@ -10,9 +10,9 @@
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
     "lint": "npx rome check .",
-    "lint-write": "npx rome check . --apply",
+    "lint:write": "npx rome check . --apply",
     "format": "npx rome format .",
-    "format-write": "npx rome format --write ."
+    "format:write": "npx rome format --write ."
   },
   "private": true,
   "dependencies": {
