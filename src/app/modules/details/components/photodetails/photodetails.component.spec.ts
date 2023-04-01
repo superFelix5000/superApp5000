@@ -25,6 +25,7 @@ describe('PhotodetailsComponent', () => {
                 },
                 MockProvider(PhotosService),
                 MockProvider(NavigationService),
+                MockProvider(ToastrService),
             ],
         }).compileComponents();
 
