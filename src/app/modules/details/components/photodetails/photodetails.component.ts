@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { catchError, NEVER, Observable } from 'rxjs';
 import { Photo } from 'src/app/models/photo';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PhotosService } from 'src/app/services/photos.service';
@@ -10,7 +11,6 @@ import { PhotosService } from 'src/app/services/photos.service';
   templateUrl: './photodetails.component.html'
 })
 export class PhotodetailsComponent implements OnInit {
-    // TODO: use Signal for number?
     protected currentId: number = 1;
     protected photo: Photo | undefined;
     protected maxNumPhotos$: Observable<number> | undefined;
@@ -24,18 +24,38 @@ export class PhotodetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.maxNumPhotos$ = this.photosService.getMaxNumPhotos();
-        // TODO: error handling for wrong parameter
         this.route.paramMap.subscribe((params) => {
-            this.currentId = Number(params.get('id'));
-            this.fetchPhoto(this.currentId);
+            const id = Number(params.get('id'));
+            this.currentId = !isNaN(id) ? id : this.currentId;
+            this.fetchPhoto(id);
         });
     }
+
+    private handleError = (error: HttpErrorResponse) => {
+        return NEVER;
+    };
 
     private fetchPhoto(id: number): void {
         this.loadingImage = true;
         this.photosService
             .getPhoto(id)
-            .subscribe((photo) => (this.photo = photo));
+            .pipe(catchError(this.handleError))
+            .subscribe((photo) => {
+                this.photo = photo;
+            });
+    }
+
+    private setTitle() {
+        var slashIndex = window.location.pathname.lastIndexOf('/');
+        var urlWithoutNumber = window.location.pathname.substring(
+            0,
+            slashIndex + 1
+        );
+        window.history.replaceState(
+            {},
+            '',
+            `${urlWithoutNumber}${this.currentId}`
+        );
     }
 
     goBack(): void {
@@ -43,11 +63,13 @@ export class PhotodetailsComponent implements OnInit {
     }
 
     goToNextPhoto(): void {
-        this.fetchPhoto(this.currentId++);
+        this.fetchPhoto(++this.currentId);
+        this.setTitle();
     }
 
     goToPreviousPhoto(): void {
-        this.fetchPhoto(this.currentId--);
+        this.fetchPhoto(--this.currentId);
+        this.setTitle();
     }
 
     loaded(): void {

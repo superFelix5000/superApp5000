@@ -9,9 +9,12 @@ import { SharedModule } from '../shared/shared.module';
         PhotodetailsComponent
     ],
     imports: [
-        DetailsRoutingModule,
+        SharedModule,
         CommonModule,
-        SharedModule
+        DetailsRoutingModule,
+    ],
+    exports: [
+        PhotodetailsComponent,
     ]
 })
 export class DetailsModule {}

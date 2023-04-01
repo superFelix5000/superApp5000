@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Photo } from '../models/photo';
 import { PhotosResult } from '../models/photosResult';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PhotosService {
     private readonly apiUrl = 'https://jsonplaceholder.typicode.com';
     private readonly apiUrlPhotos = `${this.apiUrl}/photos`;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private toastr: ToastrService) {}
 
     public getAll(): Observable<Photo[]> {
         return this.http
@@ -34,7 +35,8 @@ export class PhotosService {
                             ),
                             photos: res.body ?? [],
                         }
-                )
+                ),
+                catchError(this.handleError)
             );
     }
 
@@ -45,7 +47,8 @@ export class PhotosService {
                 params: { _limit: 1, _page: 1 },
             })
             .pipe(
-                map((res) => parseInt(res.headers.get('X-Total-Count') ?? ''))
+                map((res) => parseInt(res.headers.get('X-Total-Count') ?? '')),
+                catchError(this.handleError)
             );
     }
 
@@ -55,7 +58,10 @@ export class PhotosService {
             .pipe(catchError(this.handleError));
     }
 
-    private handleError(error: HttpErrorResponse) {
+    private handleError = (error: HttpErrorResponse) => {
+        const errorNotFound = 'Photo service data not fuond.';
+        var userFacingError = 'Something bad happened; please try again later.';
+
         if (error.status === 0) {
             // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error);
@@ -66,10 +72,12 @@ export class PhotosService {
                 `Backend returned code ${error.status}, body was: `,
                 error.error
             );
+            if (error.status === 404) {
+                userFacingError = errorNotFound;
+            }
         }
+        this.toastr.error(userFacingError);
         // Return an observable with a user-facing error message.
-        return throwError(
-            () => new Error('Something bad happened; please try again later.')
-        );
-    }
+        return throwError(() => new Error(userFacingError));
+    };
 }

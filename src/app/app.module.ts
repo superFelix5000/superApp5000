@@ -7,8 +7,9 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 import { PhotoBrowserRouteReuseStrategy } from './routing/photo-browser-route-reuse-strategy';
-import { SharedModule } from './modules/shared/shared.module';
 import { PhotogridModule } from './modules/photogrid/photogrid.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,9 @@ import { PhotogridModule } from './modules/photogrid/photogrid.module';
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        PhotogridModule
+        PhotogridModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot(), // ToastrModule added
     ],
     providers: [
     {
