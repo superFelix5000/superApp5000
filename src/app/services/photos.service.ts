@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { Photo } from '../models/photo';
 import { PhotosResult } from '../models/photosResult';
-import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class PhotosService {
     private readonly apiUrl = 'https://jsonplaceholder.typicode.com';
     private readonly apiUrlPhotos = `${this.apiUrl}/photos`;
 
-    constructor(private http: HttpClient, private toastr: ToastrService) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     public getAll(): Observable<Photo[]> {
         return this.http
@@ -76,7 +76,7 @@ export class PhotosService {
                 userFacingError = errorNotFound;
             }
         }
-        this.toastr.error(userFacingError);
+        this.router.navigateByUrl('/error');
         // Return an observable with a user-facing error message.
         return throwError(() => new Error(userFacingError));
     };

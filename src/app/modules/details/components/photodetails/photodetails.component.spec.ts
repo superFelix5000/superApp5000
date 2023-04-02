@@ -6,7 +6,6 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { PhotosService } from 'src/app/services/photos.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PhotodetailsComponent } from './photodetails.component';
-import { ToastrService } from 'ngx-toastr';
 
 describe('PhotodetailsComponent', () => {
     let component: PhotodetailsComponent;
@@ -25,7 +24,6 @@ describe('PhotodetailsComponent', () => {
                 },
                 MockProvider(PhotosService),
                 MockProvider(NavigationService),
-                MockProvider(ToastrService),
             ],
         }).compileComponents();
 

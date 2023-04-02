@@ -3,27 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PhotobrowserComponent } from './components/photobrowser/photobrowser.component';
-import { AlbumsComponent } from './components/albums/albums.component';
+import { AboutComponent } from './components/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 import { PhotoBrowserRouteReuseStrategy } from './routing/photo-browser-route-reuse-strategy';
 import { PhotogridModule } from './modules/photogrid/photogrid.module';
-import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         PhotobrowserComponent,
-        AlbumsComponent,
+        AboutComponent,
+        ErrorpageComponent,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
         PhotogridModule,
+        SharedModule,
         BrowserAnimationsModule, // required animations module
-        ToastrModule.forRoot(), // ToastrModule added
     ],
     providers: [
     {

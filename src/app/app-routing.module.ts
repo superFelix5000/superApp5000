@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumsComponent } from './components/albums/albums.component';
+import { AboutComponent } from './components/about/about.component';
 import { PreloadAllModules } from '@angular/router';
+import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/browser', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
             },
         ],
     },
-    { path: 'albums', component: AlbumsComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'error', component: ErrorpageComponent },
     { path: '**', redirectTo: '/browser' },
 ];
 
