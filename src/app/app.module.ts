@@ -9,7 +9,6 @@ import { PhotoBrowserRouteReuseStrategy } from './routing/photo-browser-route-re
 import { PhotogridModule } from './modules/photogrid/photogrid.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
-import { provideEffectsManager, provideEffect } from '@ngneat/effects-ng';
 
 @NgModule({
     declarations: [
@@ -23,8 +22,6 @@ import { provideEffectsManager, provideEffect } from '@ngneat/effects-ng';
         PhotogridModule,
         SharedModule,
         BrowserAnimationsModule, // required animations module
-        provideEffectsManager(),
-        provideEffect(TodosEffects),
     ],
     providers: [
     {
