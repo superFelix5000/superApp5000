@@ -1,6 +1,6 @@
 # SuperApp5000 / Photobrowser
 
-This is a photo browsing app which queries different REST endpoints from [{JSON} Placeholder](http://jsonplaceholder.typicode.com/) and displays the photos behind those.
+This is a photo browsing app which queries different REST endpoints from [{JSON} Placeholder](http://jsonplaceholder.typicode.com/) and displays the photos behind those. You can browse through a paginated view or enter details mode and browse through photos one by one.
 
 ## Development server
 
