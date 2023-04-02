@@ -1,22 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
 import { AboutComponent } from './about.component';
+import { MockProvider } from 'ng-mocks';
+import { BackbuttonComponent } from 'src/app/modules/shared/components/backbutton/backbutton.component';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
-describe('AlbumsComponent', () => {
-    let component: AboutComponent;
-    let fixture: ComponentFixture<AboutComponent>;
+describe('AboutComponent', () => {
+    let spectator: Spectator<AboutComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [AboutComponent],
-        }).compileComponents();
-
-        fixture = TestBed.createComponent(AboutComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    const createComponent = createComponentFactory({
+        component: AboutComponent,
+        providers: [
+            MockProvider(AboutComponent),
+            MockProvider(BackbuttonComponent),
+        ],
+        imports: [SharedModule],
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    beforeEach(() => (spectator = createComponent()));
+
+    it('component should be created', () => {
+        expect(spectator.component).toBeTruthy();
     });
 });

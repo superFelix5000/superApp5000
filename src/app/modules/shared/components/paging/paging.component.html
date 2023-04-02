@@ -1,13 +1,13 @@
 <div class="shadow-lg shadow-indigo-200 flex flex-row">
-    <button class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin disabled:hover:bg-gray-200" 
-        (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+    <button data-testid="previousPageButton" class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin disabled:hover:bg-gray-200" 
+        (click)="goToPreviousPage()" [disabled]="currentPage <= 1">
         <img class="w-full rotate-180 group-disabled:opacity-20" src="assets/arrow.svg">
     </button>
     <div class="bg-gray-200 font-mono text-lg font-thin px-5 flex flex-col justify-center">
         {{currentPage}} / {{maxNumPages}}
     </div>
-    <button class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin disabled:hover:bg-gray-200" 
-        (click)="goToNextPage()" [disabled]="currentPage === maxNumPages">
+    <button data-testid="nextPageButton" class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin disabled:hover:bg-gray-200" 
+        (click)="goToNextPage()" [disabled]="currentPage >= maxNumPages">
         <img class="w-full group-disabled:opacity-20" src="assets/arrow.svg">
     </button>
 </div>

@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BackbuttonComponent } from 'src/app/modules/shared/components/backbutton/backbutton.component';
 import { ErrorpageComponent } from './errorpage.component';
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { MockProvider } from 'ng-mocks';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 describe('ErrorpageComponent', () => {
-  let component: ErrorpageComponent;
-  let fixture: ComponentFixture<ErrorpageComponent>;
+    let spectator: Spectator<ErrorpageComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ErrorpageComponent ]
-    })
-    .compileComponents();
+    const createComponent = createComponentFactory({
+        component: ErrorpageComponent,
+        providers: [MockProvider(BackbuttonComponent)],
+        imports: [SharedModule],
+    });
 
-    fixture = TestBed.createComponent(ErrorpageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => (spectator = createComponent()));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('component should be created', () => {
+        expect(spectator.component).toBeTruthy();
+    });
 });

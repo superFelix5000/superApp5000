@@ -3,8 +3,8 @@
         <h1 class="text-3xl text-center font-black font-mono">Photo<span class="underline decoration-8 decoration-indigo-400">browser</span></h1>
     </div>
     <nav class="mb-10 w-full flex flex-row justify-center gap-5">
-      <a class="font-mono text-xl font-thin hover:decoration-indigo-400 hover:underline underline-offset-4 decoration-2" routerLink="/photogrid">Photos</a>
-      <a class="font-mono text-xl font-thin hover:decoration-indigo-400 hover:underline underline-offset-4 decoration-2" routerLink="/about">About</a>
+      <a data-testid="photos-link" class="font-mono text-xl font-thin hover:decoration-indigo-400 hover:underline underline-offset-4 decoration-2" routerLink="/photogrid">Photos</a>
+      <a data-testid="about-link" class="font-mono text-xl font-thin hover:decoration-indigo-400 hover:underline underline-offset-4 decoration-2" routerLink="/about">About</a>
     </nav>
     <router-outlet></router-outlet>
 </div>

@@ -1,23 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NavigationService } from 'src/app/services/navigation.service';
 import { BackbuttonComponent } from './backbutton.component';
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { MockService } from 'ng-mocks';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('BackbuttonComponent', () => {
-  let component: BackbuttonComponent;
-  let fixture: ComponentFixture<BackbuttonComponent>;
+    let spectator: Spectator<BackbuttonComponent>;
+    let mockNavigationService = MockService(NavigationService);
+    let router: Router;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ BackbuttonComponent ]
-    })
-    .compileComponents();
+    mockNavigationService.goBack = jest.fn();
 
-    fixture = TestBed.createComponent(BackbuttonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    const createComponent = createComponentFactory({
+        component: BackbuttonComponent,
+        providers: [
+            { provide: NavigationService, useValue: mockNavigationService },
+        ],
+        imports: [RouterTestingModule],
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        spectator = createComponent();
+        router = spectator.inject(Router);
+        router.navigateByUrl = jest.fn();
+    });
+
+    it('component should be created', () => {
+        expect(spectator.component).toBeTruthy();
+    });
+
+    it('should call router with navigationUrl when button is clicked and navigationUrl is set', () => {
+        const url = '/foo';
+        spectator.component.navigationUrl = url;
+        const navigateSpy = jest.spyOn(router, 'navigateByUrl');
+        spectator.component.buttonClicked();
+        expect(navigateSpy).toHaveBeenCalledWith(url);
+    });
+
+    it('should call navigationService when button is clicked and navigationUrl is not set', () => {
+        spectator.component.buttonClicked();
+        expect(mockNavigationService.goBack).toHaveBeenCalled();
+    });
 });

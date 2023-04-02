@@ -6,7 +6,8 @@
     "module": "CommonJs",
     "types": [
       "jest",
-      "node"
+      "node",
+      "@testing-library/jest-dom"
     ],
     "esModuleInterop": true,
     "emitDecoratorMetadata": true

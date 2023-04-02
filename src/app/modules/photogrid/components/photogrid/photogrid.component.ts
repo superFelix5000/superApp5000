@@ -39,12 +39,12 @@ export class PhotogridComponent implements OnInit {
     }
 
     goToNextPage() {
-        this.currentPage++;
+        ++this.currentPage;
         this.getCurrentPage();
     }
 
     goToPrevPage() {
-        this.currentPage--;
+        --this.currentPage;
         this.getCurrentPage();
     }
 }

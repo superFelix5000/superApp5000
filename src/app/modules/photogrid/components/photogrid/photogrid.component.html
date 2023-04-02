@@ -3,7 +3,7 @@
         <app-thumbnail [photo]="photo"/>
     </ng-container>
 </div>
-<div class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">
+<div data-testid="pagination" class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">
     <app-paging [currentPage]="currentPage" 
         [maxNumPages]="(maxPages$ | async) ?? 1"
         (onNextClicked)="goToNextPage()"

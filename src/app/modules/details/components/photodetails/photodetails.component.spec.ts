@@ -1,38 +1,35 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { MockProvider } from 'ng-mocks';
 import { of } from 'rxjs';
-import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { PhotosService } from 'src/app/services/photos.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PhotodetailsComponent } from './photodetails.component';
+import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { BackbuttonComponent } from 'src/app/modules/shared/components/backbutton/backbutton.component';
 
 describe('PhotodetailsComponent', () => {
-    let component: PhotodetailsComponent;
-    let fixture: ComponentFixture<PhotodetailsComponent>;
+    let spectator: Spectator<PhotodetailsComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            declarations: [PhotodetailsComponent],
-            imports: [SharedModule],
-            providers: [
-                {
-                    provide: ActivatedRoute,
-                    useValue: {
-                        paramMap: of({ get: () => '1' }),
-                    },
+    const createComponent = createComponentFactory({
+        component: PhotodetailsComponent,
+        providers: [
+            {
+                provide: ActivatedRoute,
+                useValue: {
+                    paramMap: of({ get: () => '1' }),
                 },
-                MockProvider(PhotosService),
-                MockProvider(NavigationService),
-            ],
-        }).compileComponents();
-
-        fixture = TestBed.createComponent(PhotodetailsComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+            },
+            MockProvider(PhotosService),
+            MockProvider(NavigationService),
+            MockProvider(BackbuttonComponent),
+        ],
+        imports: [SharedModule],
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    beforeEach(() => (spectator = createComponent()));
+
+    it('component should be created', () => {
+        expect(spectator.component).toBeTruthy();
     });
 });
