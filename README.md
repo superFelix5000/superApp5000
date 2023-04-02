@@ -11,6 +11,7 @@ Run `ng serve` or `npm run start` for a dev server. Navigate to `http://localhos
 Run `ng build` or `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Docker
+
 Build and deploy local docker container running the application using `docker compose up`. Navigate to `http://localhost:4200/`.
 
 ## Running unit tests
@@ -25,9 +26,8 @@ Run `npm run format` and `npm run lint` for inspection of needed improvements. O
 
 - Angular
 - Tailwind CSS
-- Ngx Toastr
-- Rome
 - Jest
+- Rome
 - Docker
 
 ## Live version

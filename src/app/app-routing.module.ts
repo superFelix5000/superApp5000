@@ -14,6 +14,7 @@ const routes: Routes = [
                     import('./modules/photogrid/photogrid.module').then(
                         (m) => m.PhotogridModule
                     ),
+                title: 'PhotoBrowser | Browser',
             },
             {
                 path: 'photodetails/:id',
@@ -21,6 +22,7 @@ const routes: Routes = [
                     import('./modules/details/details.module').then(
                         (m) => m.DetailsModule
                     ),
+                title: 'PhotoBrowser | Details',
             },
         ],
     },
@@ -28,11 +30,13 @@ const routes: Routes = [
         path: 'about',
         loadChildren: () =>
             import('./modules/about/about.module').then((m) => m.AboutModule),
+        title: 'PhotoBrowser | About',
     },
     {
         path: 'error',
         loadChildren: () =>
             import('./modules/error/error.module').then((m) => m.ErrorModule),
+        title: 'PhotoBrowser | Error',
     },
     { path: '**', redirectTo: '/browser' },
 ];
