@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Actions } from '@ngneat/effects/src/lib/actions';
 import { catchError, NEVER, Observable } from 'rxjs';
 import { Photo } from 'src/app/models/photo';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { PhotosService } from 'src/app/services/photos.service';
+import { loadPhoto } from 'src/app/state/photos-effects';
 
 @Component({
   selector: 'app-photodetails',
@@ -19,7 +21,8 @@ export class PhotodetailsComponent implements OnInit {
     constructor(
         private navigationService: NavigationService,
         private route: ActivatedRoute,
-        private photosService: PhotosService
+        private photosService: PhotosService,
+        private actions: Actions
     ) {}
 
     ngOnInit(): void {
@@ -27,6 +30,7 @@ export class PhotodetailsComponent implements OnInit {
         this.route.paramMap.subscribe((params) => {
             const id = Number(params.get('id'));
             this.currentId = !isNaN(id) ? id : this.currentId;
+            this.actions.dispatch(loadPhoto({ id: this.currentId }));
             this.fetchPhoto(id);
         });
     }
