@@ -9,7 +9,7 @@ describe('PhotobrowserComponent', () => {
     let router: Router;
 
     const routes: Routes = [
-        { path: 'photogrid', component: MockComponent(PhotobrowserComponent) },
+        { path: 'browser', component: MockComponent(PhotobrowserComponent) },
         { path: 'about', component: MockComponent(PhotobrowserComponent) },
     ];
 
@@ -30,7 +30,7 @@ describe('PhotobrowserComponent', () => {
     it('should navigate to /photogrid route when clicking photos link', async () => {
         spectator.click(byTestId('photos-link'));
         await spectator.fixture.whenStable();
-        expect(router.url).toBe('/photogrid');
+        expect(router.url).toBe('/browser');
     });
 
     it('should navigate to /about route when clicking about link', async () => {
