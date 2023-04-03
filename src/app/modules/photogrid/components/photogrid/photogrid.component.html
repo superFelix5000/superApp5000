@@ -4,7 +4,7 @@
     </ng-container>
 </div>
 <div data-testid="pagination" class="flex inset-x-0 justify-center fixed bottom-10" *ngIf="showButtons$ | async">
-    <app-paging [currentPage]="currentPage" 
+    <app-paging [currentPage]="currentPage" [tabIndex]="3"
         [maxNumPages]="(maxPages$ | async) ?? 1"
         (onNextClicked)="goToNextPage()"
         (onPreviousClicked)="goToPrevPage()"></app-paging>

@@ -1,13 +1,13 @@
-<div class="shadow-lg shadow-indigo-200 flex flex-row">
-    <button data-testid="previousPageButton" class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin disabled:hover:bg-gray-200" 
-        (click)="goToPreviousPage()" [disabled]="currentPage <= 1">
-        <img class="w-full rotate-180 group-disabled:opacity-20" src="assets/arrow.svg">
+<div class="shadow-lg shadow-indigo-200 dark:shadow-none flex flex-row text-gray-900 dark:text-white">
+    <button tabindex="{{tabIndex}}" data-testid="previousPageButton" class="group bg-gray-200 dark:bg-indigo-500 hover:dark:bg-indigo-800 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-l font-mono text-lg font-thin disabled:hover:bg-gray-200 disabled:dark:hover:bg-indigo-500" 
+        (click)="goToPreviousPage()" [disabled]="currentPage <= 1" aria-label="Go to previous page">
+        <svg class="fill-gray-900 dark:fill-white w-full rotate-180 group-disabled:opacity-20" height="32" width="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2" xml:space="preserve"><path d="M0.623 1.633a0.04 0.04 0 0 0 0.057 0l0.6 -0.6a0.04 0.04 0 0 0 0 -0.057l-0.6 -0.6a0.04 0.04 0 1 0 -0.057 0.057l0.572 0.572 -0.572 0.572a0.04 0.04 0 0 0 0 0.057z"/></svg>
     </button>
-    <div class="bg-gray-200 font-mono text-lg font-thin px-5 flex flex-col justify-center">
+    <div class="bg-gray-200 dark:bg-indigo-500 font-mono text-lg font-thin px-5 flex flex-col justify-center">
         {{currentPage}} / {{maxNumPages}}
     </div>
-    <button data-testid="nextPageButton" class="group bg-gray-200 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin disabled:hover:bg-gray-200" 
-        (click)="goToNextPage()" [disabled]="currentPage >= maxNumPages">
-        <img class="w-full group-disabled:opacity-20" src="assets/arrow.svg">
+    <button tabindex="{{tabIndex + 1}}" data-testid="nextPageButton" class="group bg-gray-200 dark:bg-indigo-500 hover:dark:bg-indigo-800 hover:bg-indigo-400 text-gray-800 py-2 px-4 rounded-r font-mono text-lg font-thin disabled:hover:bg-gray-200 disabled:dark:hover:bg-indigo-500"
+        (click)="goToNextPage()" [disabled]="currentPage >= maxNumPages" aria-label="Go to next page">
+        <svg class="fill-gray-900 dark:fill-white w-full group-disabled:opacity-20" height="32" width="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2" xml:space="preserve"><path d="M0.623 1.633a0.04 0.04 0 0 0 0.057 0l0.6 -0.6a0.04 0.04 0 0 0 0 -0.057l-0.6 -0.6a0.04 0.04 0 1 0 -0.057 0.057l0.572 0.572 -0.572 0.572a0.04 0.04 0 0 0 0 0.057z"/></svg>
     </button>
 </div>

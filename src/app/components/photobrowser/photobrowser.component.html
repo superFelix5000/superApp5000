@@ -1,10 +1,20 @@
+<div class="sticky top-0 z-10 w-full mx-auto md:max-w-screen-lg mb-5 md:mb-10 bg-white dark:bg-slate-900 md:mt-10 flex justify-between">
+    <div class="w-10 ml-5"></div>
+    <h1 class="text-3xl text-center font-black text-gray-900 dark:text-white font-mono">Photo<span class="underline decoration-8 decoration-indigo-400">browser</span></h1>
+    <app-darkmodebutton class="mr-5"/>
+</div>
 <div class="mx-auto max-w-screen-lg p-4 mt-5 md:mt-10">
-    <div class="sticky top-0 z-10 w-full mb-10 bg-white">
-        <h1 class="text-3xl text-center font-black font-mono">Photo<span class="underline decoration-8 decoration-indigo-400">browser</span></h1>
-    </div>
     <nav class="mb-10 w-full flex flex-row justify-center gap-5">
-      <a data-testid="photos-link" routerLinkActive="underline" class="font-mono text-xl font-thin decoration-indigo-400 hover:underline underline-offset-4 decoration-2" routerLink="/browser">Photos</a>
-      <a data-testid="about-link" routerLinkActive="underline" class="font-mono text-xl font-thin decoration-indigo-400 hover:underline underline-offset-4 decoration-2" routerLink="/about">About</a>
+        <a tabindex="1" data-testid="photos-link" routerLinkActive="underline" class="font-mono text-xl font-thin text-gray-900 dark:text-white decoration-indigo-400 hover:underline underline-offset-4 decoration-2" 
+        routerLink="/browser" aria-label="Go to Photo grid browser">
+            Photos
+        </a>
+        <a tabIndex="2" data-testid="about-link" routerLinkActive="underline" class="font-mono text-xl font-thin text-gray-900 dark:text-white decoration-indigo-400 hover:underline underline-offset-4 decoration-2" 
+        routerLink="/about" aria-label="Go to About Page">
+            About
+        </a>
     </nav>
-    <router-outlet></router-outlet>
+    <div class="md:px-4">
+        <router-outlet></router-outlet>
+    </div>
 </div>

@@ -5,6 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './paging.component.html'
 })
 export class PagingComponent {
+    @Input() tabIndex: number;
     @Input() currentPage: number = 1;
     @Input() maxNumPages: number = 1;
     @Output() onNextClicked = new EventEmitter<void>();
