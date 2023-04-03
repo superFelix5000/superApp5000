@@ -2,6 +2,17 @@
 
 This is a photo browsing app which queries different REST endpoints from [{JSON} Placeholder](http://jsonplaceholder.typicode.com/) and displays the photos behind those. You can browse through a paginated view or enter details mode and browse through photos one by one.
 
+## Features
+
+- fetch JSON formatted data from a REST API
+- present the data in a grid
+- basic navigation to different pages: browser, about, details, error
+- paging functionality in the list view
+- back and forth browsing functionality in the details view
+- lazy loaded images in grid view
+- responsive layout
+- dark mode
+
 ## Development server
 
 Run `ng serve` or `npm run start` for a dev server. Navigate to `http://localhost:4200/`.
