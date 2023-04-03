@@ -17,27 +17,27 @@ export class DarkmodebuttonComponent implements OnInit {
 
     switchMode(): void {
         if (this.isDarkTheme) {
-            localStorage[this.theme] = this.lightTheme;
+            localStorage.setItem(this.theme, this.lightTheme);
         } else {
-            localStorage[this.theme] = this.darkTheme;
+            localStorage.setItem(this.theme, this.darkTheme);
         }
         this.setMode();
     }
 
     private setMode(): void {
         if (
-            localStorage[this.theme] === this.darkTheme ||
+            localStorage.getItem(this.theme) === this.darkTheme ||
             (!(this.theme in localStorage) &&
                 window.matchMedia('(prefers-color-scheme: dark)').matches)
         ) {
             document.documentElement.classList.add(this.darkTheme);
             document.documentElement.classList.add(this.darkBg);
-            localStorage[this.theme] = this.darkTheme;
+            localStorage.setItem(this.theme, this.darkTheme);
             this.isDarkTheme = true;
         } else {
             document.documentElement.classList.remove(this.darkTheme);
             document.documentElement.classList.remove(this.darkBg);
-            localStorage[this.theme] = this.lightTheme;
+            localStorage.setItem(this.theme, this.lightTheme);
             this.isDarkTheme = false;
         }
     }
