@@ -43,4 +43,4 @@ Run `npm run format` and `npm run lint` for inspection of needed improvements. O
 
 ## Live version
 
-Take a look at a live version on GitHub Pages [here](https://superfelix5000.github.io/superApp5000/).
+The app is being built automatically via gitHub actions from the main branch. Take a look at a live version on GitHub Pages [here](https://superfelix5000.github.io/superApp5000/).
