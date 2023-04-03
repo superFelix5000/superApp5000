@@ -3,6 +3,7 @@ import { PhotobrowserComponent } from './photobrowser.component';
 import { Spectator, byTestId, createComponentFactory } from '@ngneat/spectator';
 import { Router, Routes } from '@angular/router';
 import { MockComponent } from 'ng-mocks';
+import { DarkmodebuttonComponent } from '../darkmodebutton/darkmodebutton.component';
 
 describe('PhotobrowserComponent', () => {
     let spectator: Spectator<PhotobrowserComponent>;
@@ -15,6 +16,7 @@ describe('PhotobrowserComponent', () => {
 
     const createComponent = createComponentFactory({
         component: PhotobrowserComponent,
+        declarations: [MockComponent(DarkmodebuttonComponent)],
         imports: [RouterTestingModule.withRoutes(routes)],
     });
 
